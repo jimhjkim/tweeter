@@ -11,47 +11,23 @@
 
 // console.log($.timeago(new Date()));
 
-
-// Fake data taken from initial-tweets.json
-const data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  },
-  {
-    "user": {
-      "name": "Jim",
-      "avatars": "https://i.imgur.com/73hZDYK.png",
-      "handle": "@jimbo" },
-    "content": {
-      "text": "김현진"
-    },
-    "created_at": 1570580426718
-  }
-]
+const loadTweets = () => {
+  $.ajax('/tweets', { method: 'GET' })
+    .then( (data) => {
+      renderTweets(data);
+  });
+};
+loadTweets();
 
 const renderTweets = (tweets) => {
-  for (const tweet of tweets) {
-    $('#tweets-container').append(createTweetElement(tweet));
+  const $tweetsContainer = $('#tweets-container');
+  const renderedTweets = [];
+
+  for (let tweet of tweets) {
+    // $tweetsContainer.append(createTweetElement(tweet));
+    renderedTweets.push(createTweetElement(tweet)[0].outerHTML);
   }
+  $tweetsContainer.append(renderedTweets.join(''));
 };
 
 const createTweetElement = (tweet) => {
@@ -76,8 +52,7 @@ const createTweetElement = (tweet) => {
           <img src=/images/baseline_thumb_up_alt_black_18dp.png height='20px' width='20px'>
         </div>
       </footer>
-    `
-  ;
+    `;
 
   return $tweet.append(markup);
 };
@@ -89,6 +64,7 @@ const timeago = (date) => {
   let minutes = seconds/60;
   let hours = seconds/60/60;
   let days = seconds/60/60/24;
+  let years = seconds/60/60/24/365;
 
   if (seconds < 60) {
     return `${Math.round(seconds)} seconds ago`;
@@ -96,10 +72,25 @@ const timeago = (date) => {
     return `${Math.round(minutes)} minutes ago`;
   } else if (hours < 24) {
     return `${Math.round(hours)} hours ago`;
-  } else {
+  } else if (days < 365) {
     return `${Math.round(days)} days ago`;
+  } else {
+    return `${Math.round(years)} years ago`;
   }
 
 };
 
-$(document).ready(() => renderTweets(data));
+$(document).ready(() => {
+  // render tweets from database
+  // listen for user submission
+  $('input').click((event) => {
+    // prevent default submission behavior
+    event.preventDefault();
+
+    $.ajax('/tweets', { method: 'POST', data: $('form').serialize() })
+      .then(() => {
+        $('#tweets-container').empty();
+        loadTweets();
+      });
+  });
+});

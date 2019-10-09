@@ -1,6 +1,6 @@
 $(document).ready( () => {
   const $textarea = $('textarea');
-  $textarea.on('keyup keydown', () => {    
+  $textarea.on('keyup keydown', () => {  
     let charLength = $textarea.val().length;
     let lengthDisplay = $textarea.parent().find('.counter');
 
