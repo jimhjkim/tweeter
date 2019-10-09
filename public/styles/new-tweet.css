@@ -1,6 +1,9 @@
 /* section.new-tweet {
   width: 100%;
 } */
+.new-tweet {
+  display: none;
+}
 
 form {
   display: flex;

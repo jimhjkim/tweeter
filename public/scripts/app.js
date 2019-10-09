@@ -47,7 +47,7 @@ const createTweetElement = (tweet) => {
         <p class='right' id='twitterHandle'>${tweet.user.handle}</p>
       </div>
       <header>
-        ${tweet.content.text}
+        ${escape(tweet.content.text)}
       </header>
       <footer class='unevenAlign'>
         <span class='left'>${timeago(tweet.created_at)}</span>
@@ -85,6 +85,13 @@ const timeago = (date) => {
 
 };
 
+// escape some text to protect against Cross-Site Scripting
+const escape = (str) => {
+  let div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
+
 $(document).ready(() => {
   // listen for user submission
   $('input').click((event) => {
@@ -106,4 +113,12 @@ $(document).ready(() => {
       
     }
   });
+
+  // listen for toggle
+  $('#toggle').click(() => {
+    // event.preventDefault();
+    $('.new-tweet').toggle('slow');
+    $('textarea').focus();
+  });
+
 });
