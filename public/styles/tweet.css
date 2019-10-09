@@ -1,0 +1,51 @@
+.tweet {
+  width: 100%;
+  margin-top: 50px;
+  border-style: solid;
+  border-width: 0.15em;
+  padding: 0.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+  margin-bottom: 2em;
+}
+.tweet:hover {
+  box-shadow: 7px 7px lightgrey;
+  font-weight: bold;
+}
+
+.tweet #twitterHandle {
+  opacity: 0;
+}
+.tweet:hover #twitterHandle {
+  opacity: 1;
+}
+
+.unevenAlign {
+  font-weight: lighter;
+  display: flex;
+  align-items: center;
+}
+.left {
+  justify-content: flex-start;
+  margin-right: 0.5em;
+}
+.right {
+  margin-left: auto;
+  margin-right: 0.5em;
+}
+
+div.unevenAlign {
+  font-size: 0.75em;
+}
+
+.tweet header {
+  margin-bottom: 1.5em;
+  font-size: 0.75em;
+}
+
+footer {
+  padding-top: 1em;
+  border-top: solid;
+  border-top-width: 0.15em;
+  font-size: 0.75em;
+}
