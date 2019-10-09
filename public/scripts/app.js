@@ -11,10 +11,14 @@
 
 // console.log($.timeago(new Date()));
 
-const loadTweets = () => {
+const loadTweets = (onlyLoadLatest = false) => {
   $.ajax('/tweets', { method: 'GET' })
     .then( (data) => {
-      renderTweets(data);
+      if (onlyLoadLatest) {
+        renderTweets([data[data.length - 1]])
+      } else {
+        renderTweets(data);
+      }
   });
 };
 loadTweets();
@@ -25,9 +29,10 @@ const renderTweets = (tweets) => {
 
   for (let tweet of tweets) {
     // $tweetsContainer.append(createTweetElement(tweet));
-    renderedTweets.push(createTweetElement(tweet)[0].outerHTML);
+    renderedTweets.unshift(createTweetElement(tweet)[0].outerHTML);
   }
-  $tweetsContainer.append(renderedTweets.join(''));
+  $tweetsContainer.prepend(renderedTweets.join(''));
+  // console.log('after renderedTweets', $tweetsContainer.children());
 };
 
 const createTweetElement = (tweet) => {
@@ -89,14 +94,16 @@ $(document).ready(() => {
     const $textarea = $('textarea');
     if (!$textarea.val()) {
       alert('Nothing to  post!');
+
     } else if ($textarea.val().length > 140) {
       alert('Too long to post!');
+
     } else {
       $.ajax('/tweets', { method: 'POST', data: $('form').serialize() })
       .then(() => {
-        $('#tweets-container').empty();
-        loadTweets();
+        loadTweets(true);
       });
+      
     }
   });
 });
