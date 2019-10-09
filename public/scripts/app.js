@@ -81,16 +81,22 @@ const timeago = (date) => {
 };
 
 $(document).ready(() => {
-  // render tweets from database
   // listen for user submission
   $('input').click((event) => {
     // prevent default submission behavior
     event.preventDefault();
-
-    $.ajax('/tweets', { method: 'POST', data: $('form').serialize() })
+    
+    const $textarea = $('textarea');
+    if (!$textarea.val()) {
+      alert('Nothing to  post!');
+    } else if ($textarea.val().length > 140) {
+      alert('Too long to post!');
+    } else {
+      $.ajax('/tweets', { method: 'POST', data: $('form').serialize() })
       .then(() => {
         $('#tweets-container').empty();
         loadTweets();
       });
+    }
   });
 });
