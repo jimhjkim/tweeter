@@ -4,9 +4,11 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+//  GET tweets from database server
 const loadTweets = (onlyLoadLatest = false) => {
   $.ajax('/tweets', { method: 'GET' })
     .then((data) => {
+      // check if only new tweets (user input) need to be rendered and loaded
       if (onlyLoadLatest) {
         renderTweets([data[data.length - 1]]);
       } else {
@@ -14,23 +16,23 @@ const loadTweets = (onlyLoadLatest = false) => {
       }
     });
 };
+// load tweets for the initial server launch
 loadTweets();
 
+// add tweet markup to tweets container
 const renderTweets = (tweets) => {
   const $tweetsContainer = $('#tweets-container');
   const renderedTweets = [];
 
   for (let tweet of tweets) {
-    // $tweetsContainer.append(createTweetElement(tweet));
     renderedTweets.unshift(createTweetElement(tweet)[0].outerHTML);
   }
   $tweetsContainer.prepend(renderedTweets.join(''));
-  // console.log('after renderedTweets', $tweetsContainer.children());
 };
 
+// generate markup from database server
 const createTweetElement = (tweet) => {
   let $tweet = $('<article>').addClass('tweet');
-  // const timeago_days = Math.round((Date.now() - tweet.created_at)/1000/60/60/24);
 
   const markup =
     `
@@ -55,14 +57,14 @@ const createTweetElement = (tweet) => {
   return $tweet.append(markup);
 };
 
-// date argument needs to be in UNIX format
+// calculate time ago
 const timeago = (date) => {
   // diff in seconds
   let seconds = (Date.now() - date) / 1000;
   let minutes = seconds / 60;
-  let hours = seconds / 60 / 60;
-  let days = seconds / 60 / 60 / 24;
-  let years = seconds / 60 / 60 / 24 / 365;
+  let hours = minutes / 60;
+  let days = hours / 24;
+  let years = days / 365;
 
   if (seconds < 60) {
     return `${Math.round(seconds)} seconds ago`;
@@ -85,37 +87,45 @@ const escape = (str) => {
   return div.innerHTML;
 };
 
+// execute when page is ready
 $(document).ready(() => {
   // listen for user submission
   $('input').click((event) => {
     event.preventDefault();
     
+    // textarea validation logic
     const $textarea = $('textarea');
+    // empty textarea
     if (!$textarea.val()) {
+      // slide previous error msg up
       $('.isa_error').slideUp('slow', () => {
         $('.isa_error').slideDown('slow').find('#error-message').text('Nothing to post!');
       });
-
+    // user input too long
     } else if ($textarea.val().length > 140) {
+      // slide previous error msg up
       $('.isa_error').slideUp('slow', () => {
         $('.isa_error').slideDown('slow').find('#error-message').text('Too long to post!');
       });
-
+    // successful submission
     } else {
+      // slide previous error msg up
       $('.isa_error').slideUp('slow');
-
+      // add new tweet to database server
       $.ajax('/tweets', { method: 'POST', data: $('form').serialize() })
         .then(() => {
           loadTweets(true);
         });
-      
+      // flash success submission msg
       $('.isa_success').slideDown('slow').fadeOut('slow');
+      // clear textarea
       $('textarea').val('');
+      // reset char counter
       $('.counter').text('140');
     }
   });
 
-  // listen for toggle
+  // listen for write tweet toggle click
   $('nav div').click(() => {
     $('.new-tweet').toggle('slow', () => {
       $('textarea').focus();
