@@ -66,6 +66,8 @@ input {
   background-color: #4056A1;
   padding-left: 10px;
   padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   border-radius: 5px;
 }
 
@@ -75,6 +77,10 @@ input:hover {
 
 form span {
   font-family: 'Bungee', sans-serif;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 .red {
   color: red;

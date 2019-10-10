@@ -46,7 +46,7 @@ const createTweetElement = (tweet) => {
         <span class='left'>${tweet.user.name}</span>
         <p class='right' id='twitterHandle'>${tweet.user.handle}</p>
       </div>
-      <header>
+      <header id='tweet-text'>
         ${escape(tweet.content.text)}
       </header>
       <footer class='unevenAlign'>
@@ -95,7 +95,6 @@ const escape = (str) => {
 $(document).ready(() => {
   // listen for user submission
   $('input').click((event) => {
-    // prevent default submission behavior
     event.preventDefault();
     
     const $textarea = $('textarea');
@@ -124,7 +123,7 @@ $(document).ready(() => {
   });
 
   // listen for toggle
-  $('#toggle').click(() => {
+  $('nav div').click(() => {
     $('.new-tweet').toggle('slow', () => {
       $('textarea').focus();
     });

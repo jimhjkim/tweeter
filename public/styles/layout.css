@@ -31,7 +31,12 @@ main.container {
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
-#scroll-up {
+#tweet-text {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+ #scroll-up {
   position: fixed;
   border-radius: 100%;
   background-color: tomato;
