@@ -2,6 +2,8 @@
 <html lang="en">
   <head>
     <!-- Meta Information -->
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+    
     <title>Tweeter - Home Page</title>
 
     <!-- External CSS -->
@@ -24,12 +26,11 @@
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script type='text/javascript' src='/scripts/composer-char-counter.js'></script>
     <script type='text/javascript' src='/scripts/composer.js'></script>
-
   </head>
 
   <body>
     <!-- Top nav bar (fixed) -->
-    <nav>
+    <nav id='navigation'>
       <span id='logo'>tweeter</span>
       <div>
         <span id='writeNewTweet'><span class='bold'>Write </span> a new tweet</span>
@@ -37,45 +38,42 @@
       </div>
     </nav>
 
-    <header class='profile'>
-      <div>
+    <div class='content'>
+      <header class='profile'>
         <img src='/images/profile-hex.png'>
-      </div>
-      <!-- <br> -->
-      <div>
         <h2>Jim <span class='light'>Kim</span></h2>
-      </div>
-    </header>
-    
-    <!-- Page-specific (main) content here -->
-    <main class="container">
-      <section class='new-tweet'>
+      </header>
+      
+      <!-- Page-specific (main) content here -->
+      <main class="container">
+        <section class='new-tweet'>
 
-        <div class='isa_error'>
-          <i class='fa fa-times-circle'></i>
-          <span id='error-message'></span>
-          <i class='fa fa-times-circle'></i>
-        </div>
+          <div class='isa_error'>
+            <i class='fa fa-times-circle'></i>
+            <span id='error-message'></span>
+            <i class='fa fa-times-circle'></i>
+          </div>
 
-        <div class='isa_success'>
-          <i class='fa fa-check'></i>
-          <span id='success-message'>Tweet posted successfully</span>
-          <i class='fa fa-check'></i>
-        </div>
+          <div class='isa_success'>
+            <i class='fa fa-check'></i>
+            <span id='success-message'>Tweet posted successfully</span>
+            <i class='fa fa-check'></i>
+          </div>
 
-        <h2>Home</h2>
-        <form method='POST' action='/tweets'>
-          <textarea name='text' placeholder="What's happening?""></textarea>
-          <input type='submit' value='Tweet'>
-          <span class='counter'>140</span>
-        </form>
-      </section>
-      <section id='tweets-container'>
-        <!-- Tweet cards here -->
-      </section>
+          <h2>Home</h2>
+          <form method='POST' action='/tweets'>
+            <textarea name='text' placeholder="What's happening?""></textarea>
+            <input type='submit' value='Tweet'>
+            <span class='counter'>140</span>
+          </form>
+        </section>
+        <section id='tweets-container'>
+          <!-- Tweet cards here -->
+        </section>
 
-      <button id='scroll-up' type='button'><i class="fas fa-angle-double-up"></i></button>
-    
-    </main>
+        <button id='scroll-up' type='button'><i class="fas fa-angle-double-up"></i></button>
+      
+      </main>
+    </div>
   </body>
 </html>

@@ -21,7 +21,7 @@ nav div {
   margin-right: 1.5em;
 }
 nav div:hover {
-  opacity: 0.5;
+  /* opacity: 0.5; */
   cursor: pointer;
 }
 nav div:hover #toggle {
@@ -48,10 +48,6 @@ nav div:hover #toggle {
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: tomato;
 }
-
-/* #toggle:hover {
-  opacity: 0.5;
-} */
 
 @keyframes MoveUpDown {
   0%, 100% {

@@ -1,12 +1,11 @@
 .tweet {
+  margin-bottom: 25px;
   width: 100%;
-  margin-top: 50px;
   border-style: solid;
   border-width: 0.15em;
   padding: 0.5em;
   padding-left: 1em;
   padding-right: 1em;
-  margin-bottom: 2em;
   border-radius: 10px;
 }
 .tweet:hover {

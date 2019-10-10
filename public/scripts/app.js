@@ -46,7 +46,7 @@ const createTweetElement = (tweet) => {
         <span class='left'>${tweet.user.name}</span>
         <p class='right' id='twitterHandle'>${tweet.user.handle}</p>
       </div>
-      <header id='tweet-text'>
+      <header>
         ${escape(tweet.content.text)}
       </header>
       <footer class='unevenAlign'>
