@@ -3,23 +3,16 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-// return a tweet <article> element containing the entire HTML structure of the tweet
-
-// $(document).ready(function() {
-//   $('time.timeago').timeago();
-// });
-
-// console.log($.timeago(new Date()));
 
 const loadTweets = (onlyLoadLatest = false) => {
   $.ajax('/tweets', { method: 'GET' })
-    .then( (data) => {
+    .then((data) => {
       if (onlyLoadLatest) {
-        renderTweets([data[data.length - 1]])
+        renderTweets([data[data.length - 1]]);
       } else {
         renderTweets(data);
       }
-  });
+    });
 };
 loadTweets();
 
@@ -39,7 +32,7 @@ const createTweetElement = (tweet) => {
   let $tweet = $('<article>').addClass('tweet');
   // const timeago_days = Math.round((Date.now() - tweet.created_at)/1000/60/60/24);
 
-  const markup = 
+  const markup =
     `
       <div class='unevenAlign'>
         <img class='left' src=${tweet.user.avatars} height='40px' width='40px'>
@@ -66,10 +59,10 @@ const createTweetElement = (tweet) => {
 const timeago = (date) => {
   // diff in seconds
   let seconds = (Date.now() - date) / 1000;
-  let minutes = seconds/60;
-  let hours = seconds/60/60;
-  let days = seconds/60/60/24;
-  let years = seconds/60/60/24/365;
+  let minutes = seconds / 60;
+  let hours = seconds / 60 / 60;
+  let days = seconds / 60 / 60 / 24;
+  let years = seconds / 60 / 60 / 24 / 365;
 
   if (seconds < 60) {
     return `${Math.round(seconds)} seconds ago`;
@@ -112,9 +105,9 @@ $(document).ready(() => {
       $('.isa_error').slideUp('slow');
 
       $.ajax('/tweets', { method: 'POST', data: $('form').serialize() })
-      .then(() => {
-        loadTweets(true);
-      });
+        .then(() => {
+          loadTweets(true);
+        });
       
       $('.isa_success').slideDown('slow').fadeOut('slow');
       $('textarea').val('');
