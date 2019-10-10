@@ -11,15 +11,16 @@ $(window).scroll(function(event) {
     // listen for click
     $('#scroll-up').click(() => {
       window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-      
-      $('.new-tweet').fadeIn(2000, () => {
-        $('textarea').focus();
-      })
     });
 
   } else if (scroll < 400) {
     $('#scroll-up').fadeOut('slow');
     $('nav div').fadeIn('slow');
+
+  } else {
+    $('.new-tweet').fadeIn(2000, () => {
+      $('textarea').focus();
+    });
 
   }
   position = scroll;
