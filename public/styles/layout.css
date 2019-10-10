@@ -19,9 +19,7 @@ body {
   background-color: #f4f1ec;
   font-size: 24px;
   font-family: 'Source Sans Pro', sans-serif;
-
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   flex-direction: column;
 }
@@ -29,11 +27,36 @@ body {
 main.container {
   width: 90%;
   background-color: inherit;
-
-  /* display: flex; */
-  /* align-items: center; */
-  /* flex-direction: column; */
 }
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
+#scroll-up {
+  position: fixed;
+  border-radius: 100%;
+  background-color: tomato;
+  color: white;
+  outline: none;
+  bottom: 2%;
+  right: 2%;
+  z-index: 9999;
+  height: 2.5em;
+  width: 2.5em;
+  display: none;
+
+  animation: MoveUpDown 1s linear infinite;
+ }
+
+ #scroll-up:hover {
+   opacity: 0.5;
+ }
+
+@keyframes MoveUpDown {
+  0%, 100% {
+    bottom: 2%;
+  }
+  50% {
+    bottom: 3%;
+    color: tomato; 
+  }
+}

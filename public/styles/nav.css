@@ -55,5 +55,6 @@ nav div:hover #toggle {
   }
   50% {
     bottom: 2em;
+    color: tomato; 
   }
 }

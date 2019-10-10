@@ -100,10 +100,14 @@ $(document).ready(() => {
     
     const $textarea = $('textarea');
     if (!$textarea.val()) {
-      $('.isa_error').slideDown('slow').find('#error-message').text('Nothing to post!');
+      $('.isa_error').slideUp('slow', () => {
+        $('.isa_error').slideDown('slow').find('#error-message').text('Nothing to post!');
+      });
 
     } else if ($textarea.val().length > 140) {
-      $('.isa_error').slideDown('slow').find('#error-message').text('Too long to post!');
+      $('.isa_error').slideUp('slow', () => {
+        $('.isa_error').slideDown('slow').find('#error-message').text('Too long to post!');
+      });
 
     } else {
       $('.isa_error').slideUp('slow');
@@ -121,8 +125,9 @@ $(document).ready(() => {
 
   // listen for toggle
   $('#toggle').click(() => {
-    $('.new-tweet').toggle('slow');
-    $('textarea').focus();
+    $('.new-tweet').toggle('slow', () => {
+      $('textarea').focus();
+    });
   });
 
 });
