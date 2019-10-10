@@ -100,23 +100,27 @@ $(document).ready(() => {
     
     const $textarea = $('textarea');
     if (!$textarea.val()) {
-      alert('Nothing to  post!');
+      $('.isa_error').slideDown('slow').find('#error-message').text('Nothing to post!');
 
     } else if ($textarea.val().length > 140) {
-      alert('Too long to post!');
+      $('.isa_error').slideDown('slow').find('#error-message').text('Too long to post!');
 
     } else {
+      $('.isa_error').slideUp('slow');
+
       $.ajax('/tweets', { method: 'POST', data: $('form').serialize() })
       .then(() => {
         loadTweets(true);
       });
       
+      $('.isa_success').slideDown('slow').fadeOut('slow');
+      $('textarea').val('');
+      $('.counter').text('140');
     }
   });
 
   // listen for toggle
   $('#toggle').click(() => {
-    // event.preventDefault();
     $('.new-tweet').toggle('slow');
     $('textarea').focus();
   });

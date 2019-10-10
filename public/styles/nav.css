@@ -16,6 +16,13 @@ nav {
   font-family: 'Bungee', sans-serif;
   font-size: 1.5em;
 }
+/* 
+nav div:hover {
+  opacity: 0.5;
+} */
+nav div:hover #toggle {
+  color: tomato;
+}
 
 #writeNewTweet {
   font-size: 1em;
@@ -30,19 +37,21 @@ nav {
   background-color: transparent;
   border: none;
   outline: none;
+  color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: tomato; 
 
   animation: MoveUpDown 1s linear infinite;
   position: absolute;
-
 }
 
-#toggle:hover {
+/* #toggle:hover {
   opacity: 0.5;
-}
+} */
 
 @keyframes MoveUpDown {
   0%, 100% {
-    bottom: 1em;
+    bottom: 1.5em;
   }
   50% {
     bottom: 2em;

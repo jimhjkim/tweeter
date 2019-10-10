@@ -32,7 +32,7 @@
       <span id='logo'>tweeter</span>
       <div>
         <span id='writeNewTweet'><span class='bold'>Write </span> a new tweet</span>
-        <button type='button'id='toggle' style='font-size: 1em; color: tomato'><i class="fas fa-arrow-down"></i></button>
+        <button type='button'id='toggle' style='font-size: 1em'><i class="fas fa-arrow-down"></i></button>
       </div>
     </nav>
 
@@ -49,6 +49,19 @@
     <!-- Page-specific (main) content here -->
     <main class="container">
       <section class='new-tweet'>
+
+        <div class='isa_error'>
+          <i class='fa fa-times-circle'></i>
+          <span id='error-message'></span>
+          <i class='fa fa-times-circle'></i>
+        </div>
+
+        <div class='isa_success'>
+          <i class='fa fa-check'></i>
+          <span id='success-message'>Tweet posted successfully</span>
+          <i class='fa fa-check'></i>
+        </div>
+
         <h2>Compose Tweet</h2>
         <form method='POST' action='/tweets'>
           <textarea name='text' placeholder='What are you humming about?'></textarea>

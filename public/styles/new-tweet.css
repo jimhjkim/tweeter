@@ -1,6 +1,37 @@
 /* section.new-tweet {
   width: 100%;
 } */
+/* @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'); */
+ 
+.isa_info, .isa_success, .isa_warning, .isa_error {
+margin: 10px 0px;
+padding:12px;
+ 
+}
+.isa_info {
+    color: #00529B;
+    background-color: #BDE5F8;
+}
+.isa_success {
+    color: #4F8A10;
+    display: none;
+    /* background-color: #DFF2BF; */
+}
+.isa_warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+}
+.isa_error {
+    color: tomato;
+    border-style: solid;
+    border-width: 0.15em;
+    display: none;
+}
+/* .isa_info i, .isa_success i, .isa_warning i, .isa_error i {
+    margin:10px 22px;
+    font-size:2em;
+    vertical-align:middle;
+} */
 .new-tweet {
   display: none;
 }
@@ -34,6 +65,7 @@ input {
   background-color: #4056A1;
   padding-left: 10px;
   padding-right: 10px;
+  border-radius: 5px;
 }
 
 input:hover {
