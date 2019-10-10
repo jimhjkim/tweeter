@@ -51,10 +51,10 @@ nav div:hover #toggle {
 
 @keyframes MoveUpDown {
   0%, 100% {
-    bottom: 1.5em;
+    transform: translateY(0);
   }
   50% {
-    bottom: 2em;
+    transform: translateY(5px);
     color: tomato; 
   }
 }
