@@ -16,6 +16,20 @@ $(document).ready(() => {
     } else {
       charCounter.removeClass('red');
     }
+
+    // resize textarea
+    autosize($textarea);
   });
 
+  // $textarea.each(() => {
+  //   autosize($textarea);
+  // })
+
 });
+
+
+const autosize = (textarea) => {
+  // temporarily shrink textarea so that scrollHeight returns content height when content does not fill textarea
+  $(textarea).height(1);
+  $(textarea).height($(textarea).prop('scrollHeight'));  
+};

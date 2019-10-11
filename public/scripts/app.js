@@ -122,6 +122,10 @@ $(document).ready(() => {
       $('textarea').val('');
       // reset char counter
       $('.counter').text('140');
+      // reset height of textarea
+      $('textarea').css('height', '2em');
+      // return cursor back to textarea
+      $('textarea').focus();
     }
   });
 
@@ -132,4 +136,6 @@ $(document).ready(() => {
     });
   });
 
+  // auto resize textarea
+  
 });
