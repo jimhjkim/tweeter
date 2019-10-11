@@ -21,10 +21,6 @@ $(document).ready(() => {
     autosize($textarea);
   });
 
-  // $textarea.each(() => {
-  //   autosize($textarea);
-  // })
-
 });
 
 

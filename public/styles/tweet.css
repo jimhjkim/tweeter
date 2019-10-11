@@ -1,5 +1,5 @@
 .tweet {
-  margin-bottom: 25px;
+  margin-right: 0px;
   width: 100%;
   border-style: solid;
   border-width: 0.15em;
@@ -7,6 +7,7 @@
   padding-left: 1em;
   padding-right: 1em;
   border-radius: 10px;
+  margin-bottom: 20px;
 }
 .tweet:hover {
   box-shadow: 7px 7px lightgrey;
@@ -48,4 +49,12 @@ footer {
   border-top: solid;
   border-top-width: 0.15em;
   font-size: 0.75em;
+  outline: none;
+}
+
+fa-heart:hover {
+  cursor: pointer;
+}
+.clicked {
+  color: red;
 }

@@ -1,6 +1,3 @@
-/* section.new-tweet {
-  width: 100%;
-} */
 .new-tweet {
   display: none;
   margin-bottom: 25px;
@@ -18,8 +15,6 @@ textarea {
   width: 100%;
   min-height: 2em;
   max-height: 50vh;
-  /* overflow: hidden; */
-  /* height: 50px; */
   font-weight: 600;
   background-color: #F4F1EC;
   border-top: 0;
@@ -29,8 +24,7 @@ textarea {
   border-bottom-color: #545149;
   outline: none;
   resize: none;
-  white-space: normal;
-
+  cursor: pointer;
   flex: 100%;
   margin-bottom: 5px;
 }
@@ -60,8 +54,6 @@ form span {
 .red {
   color: red;
 }
-
-/* @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'); */
  
 .isa_info, .isa_success, .isa_warning, .isa_error {
   margin: 10px 0px;

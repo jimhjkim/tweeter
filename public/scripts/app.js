@@ -3,6 +3,7 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
+/*eslint-env jquery*/
 
 //  GET tweets from database server
 const loadTweets = (onlyLoadLatest = false) => {
@@ -28,6 +29,11 @@ const renderTweets = (tweets) => {
     renderedTweets.unshift(createTweetElement(tweet)[0].outerHTML);
   }
   $tweetsContainer.prepend(renderedTweets.join(''));
+
+  // like button
+  $('.fa-heart').click(function() {    
+    $(this).toggleClass('clicked');
+  });
 };
 
 // generate markup from database server
@@ -47,9 +53,9 @@ const createTweetElement = (tweet) => {
       <footer class='unevenAlign'>
         <span class='left'>${timeago(tweet.created_at)}</span>
         <div class=right>
-          <img src=/images/baseline_flag_black_18dp.png height='20px' width='20px'>
-          <img src=/images/baseline_repeat_black_18dp.png height='20px' width='20px'>
-          <img src=/images/baseline_thumb_up_alt_black_18dp.png height='20px' width='20px'>
+          <i class="fas fa-flag"></i>
+          <i class="fas fa-retweet"></i>
+          <i class="fas fa-heart"></i>
         </div>
       </footer>
     `;
@@ -67,15 +73,15 @@ const timeago = (date) => {
   let years = days / 365;
 
   if (seconds < 60) {
-    return `${Math.round(seconds)} seconds ago`;
+    return `${Math.round(seconds)} second${Math.round(seconds) > 1 ? 's' : ''} ago`;
   } else if (minutes < 60) {
-    return `${Math.round(minutes)} minutes ago`;
+    return `${Math.round(minutes)} minute${Math.round(minutes) > 1 ? 's' : ''} ago`;
   } else if (hours < 24) {
-    return `${Math.round(hours)} hours ago`;
+    return `${Math.round(hours)} hour${Math.round(hours) > 1 ? 's' : ''} ago`;
   } else if (days < 365) {
-    return `${Math.round(days)} days ago`;
+    return `${Math.round(days)} day${Math.round(days) > 1 ? 's' : ''} ago`;
   } else {
-    return `${Math.round(years)} years ago`;
+    return `${Math.round(years)} year${Math.round(years) ? 's' : ''} ago`;
   }
 
 };
@@ -136,6 +142,4 @@ $(document).ready(() => {
     });
   });
 
-  // auto resize textarea
-  
 });
